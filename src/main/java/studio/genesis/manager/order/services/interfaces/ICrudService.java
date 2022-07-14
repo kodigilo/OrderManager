@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-public interface CrudService <T, ID> {
+public interface ICrudService<T, ID> {
     Page<T> pageable(Pageable pageable);
     List<T> all();
     T find(ID id);

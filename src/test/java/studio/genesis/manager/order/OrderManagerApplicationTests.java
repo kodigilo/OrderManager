@@ -1,4 +1,4 @@
-package studio.genesis.manager.order.ordermanager;
+package studio.genesis.manager.order;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

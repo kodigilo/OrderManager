@@ -1,4 +1,4 @@
-package studio.genesis.manager.order.ordermanager;
+package studio.genesis.manager.order;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

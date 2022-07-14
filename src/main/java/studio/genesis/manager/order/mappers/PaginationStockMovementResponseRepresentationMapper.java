@@ -4,18 +4,18 @@ import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import org.springframework.data.domain.Page;
-import studio.genesis.manager.order.models.User;
-import studio.genesis.manager.order.responses.PaginationUserResponseRepresentation;
+import studio.genesis.manager.order.models.StockMovement;
+import studio.genesis.manager.order.responses.PaginationStockMovementResponseRepresentation;
 
-public interface PaginationUserResponseRepresentationMapper {
-    PaginationUserResponseRepresentationMapper INSTANCE = Mappers.getMapper(PaginationUserResponseRepresentationMapper.class);
+public interface PaginationStockMovementResponseRepresentationMapper {
+    PaginationStockMovementResponseRepresentationMapper INSTANCE = Mappers.getMapper(PaginationStockMovementResponseRepresentationMapper.class);
 
-    @BeanMapping(resultType = PaginationUserResponseRepresentation.class)
-    @Mapping(target = "content",  expression = "java(UserRepresentationMapper.INSTANCE.mapList(item.getContent()))")
+    @BeanMapping(resultType = PaginationStockMovementResponseRepresentation.class)
+    @Mapping(target = "content",  expression = "java(StockMovementRepresentationMapper.INSTANCE.mapList(item.getContent()))")
     @Mapping(target = "number", source = "item.number")
     @Mapping(target = "size", source = "item.size")
     @Mapping(target = "totalPages", source = "item.totalPages")
     @Mapping(target = "totalElements", source = "item.totalElements")
-    PaginationUserResponseRepresentation map(Long count, Page<User> item);
+    PaginationStockMovementResponseRepresentation map(Long count, Page<StockMovement> item);
 
 }

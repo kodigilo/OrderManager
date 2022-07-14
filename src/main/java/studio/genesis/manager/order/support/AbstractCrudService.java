@@ -1,12 +1,14 @@
-package studio.genesis.manager.order.services.interfaces;
+package studio.genesis.manager.order.support;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import studio.genesis.manager.order.services.interfaces.ICrudService;
+
 import java.util.List;
 
-public abstract class CrudService<R extends JpaRepository<T,K>,T,K> implements ICrudService<T, K> {
+public abstract class AbstractCrudService<R extends JpaRepository<T,K>,T,K> implements ICrudService<T, K> {
 
     @Autowired
     private R repository;

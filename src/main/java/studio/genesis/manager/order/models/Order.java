@@ -1,6 +1,6 @@
 package studio.genesis.manager.order.models;
 
-import lombok.*;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "stock_movements")
-public class StockMovement implements Serializable {
+@Table(name = "orders")
+public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -24,4 +24,8 @@ public class StockMovement implements Serializable {
     @JoinColumn(name = "id_item", nullable = false)
     @ManyToOne(fetch = FetchType.EAGER)
     private Item item;
+
+    @JoinColumn(name = "id_user", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User user;
 }

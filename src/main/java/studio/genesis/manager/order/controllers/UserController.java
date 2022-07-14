@@ -9,75 +9,78 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-import studio.genesis.manager.order.mappers.ItemRepresentationMapper;
-import studio.genesis.manager.order.mappers.PaginationItemResponseRepresentationMapper;
-import studio.genesis.manager.order.responses.*;
-import studio.genesis.manager.order.services.ItemService;
+import studio.genesis.manager.order.mappers.UserRepresentationMapper;
+import studio.genesis.manager.order.mappers.PaginationUserResponseRepresentationMapper;
+import studio.genesis.manager.order.responses.AllUserResponseRepresentation;
+import studio.genesis.manager.order.responses.UserPayloadRepresentation;
+import studio.genesis.manager.order.responses.UserRepresentation;
+import studio.genesis.manager.order.responses.PaginationUserResponseRepresentation;
+import studio.genesis.manager.order.services.UserService;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @AllArgsConstructor
-public class ItemController implements ItemControllerApi {
+public class UserController implements UserControllerApi {
 
-    private final ItemService itemService;
+    private final UserService itemService;
 
     @Override
-    public ResponseEntity<PaginationItemResponseRepresentation> pagination(String order, String orderby, Integer page, Integer limit) {
+    public ResponseEntity<PaginationUserResponseRepresentation> pagination(String order, String orderby, Integer page, Integer limit) {
         try {
             PageRequest pageRequest = PageRequest.of(page, limit, Sort.by(Sort.Direction.valueOf(order), orderby));
             var pageable = itemService.pageable(pageRequest);
-            return ResponseEntity.ok(PaginationItemResponseRepresentationMapper.INSTANCE.map(pageable.getTotalElements(), pageable));
+            return ResponseEntity.ok(PaginationUserResponseRepresentationMapper.INSTANCE.map(pageable.getTotalElements(), pageable));
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Erro ao listar dados");
         }
     }
 
     @Override
-    public ResponseEntity<AllItemResponseRepresentation> all() {
+    public ResponseEntity<AllUserResponseRepresentation> all() {
         try {
-            return ResponseEntity.ok(new AllItemResponseRepresentation().content(ItemRepresentationMapper.INSTANCE.mapList(itemService.all())));
+            return ResponseEntity.ok(new AllUserResponseRepresentation().content(UserRepresentationMapper.INSTANCE.mapList(itemService.all())));
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Erro ao listar dados");
         }
     }
 
     @Override
-    public ResponseEntity<ItemRepresentation> add(ItemPayloadRepresentation body) {
+    public ResponseEntity<UserRepresentation> add(UserPayloadRepresentation body) {
         try {
-            return ResponseEntity.ok(ItemRepresentationMapper.INSTANCE.map(itemService.save(ItemRepresentationMapper.INSTANCE.payloadToModel(body))));
+            return ResponseEntity.ok(UserRepresentationMapper.INSTANCE.map(itemService.save(UserRepresentationMapper.INSTANCE.payloadToModel(body))));
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Erro ao add item");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Erro ao add usuário");
         }
     }
 
     @Override
-    public ResponseEntity<ItemRepresentation> get(Integer id) {
+    public ResponseEntity<UserRepresentation> get(Integer id) {
         try {
-            return ResponseEntity.ok(ItemRepresentationMapper.INSTANCE.map(itemService.find(id.longValue())));
+            return ResponseEntity.ok(UserRepresentationMapper.INSTANCE.map(itemService.find(id.longValue())));
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Erro ao buscar item");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Erro ao buscar usuário");
         }
     }
 
     @Override
-    public ResponseEntity<ItemRepresentation> update(Integer id, ItemRepresentation body) {
+    public ResponseEntity<UserRepresentation> update(Integer id, UserRepresentation body) {
         try {
             if (itemService.find(id.longValue()) == null)
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Item não encontrado");
-            return ResponseEntity.ok(ItemRepresentationMapper.INSTANCE.map(itemService.save(ItemRepresentationMapper.INSTANCE.toModel(body))));
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário não encontrado");
+            return ResponseEntity.ok(UserRepresentationMapper.INSTANCE.map(itemService.save(UserRepresentationMapper.INSTANCE.toModel(body))));
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Erro ao atualizar item");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Erro ao atualizar usuário");
         }
     }
 
     @Override
-    public ResponseEntity<ItemRepresentation> delete(Integer id) {
+    public ResponseEntity<UserRepresentation> delete(Integer id) {
         try {
-            var item = ItemRepresentationMapper.INSTANCE.map(itemService.find(id.longValue()));
+            var item = UserRepresentationMapper.INSTANCE.map(itemService.find(id.longValue()));
             itemService.delete(id.longValue());
             return ResponseEntity.ok(item);
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Erro ao deletar item");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Erro ao deletar usuário");
         }
     }
 

@@ -2,24 +2,24 @@ package studio.genesis.manager.order.mappers;
 
 import org.mapstruct.BeanMapping;
 import org.mapstruct.factory.Mappers;
-import studio.genesis.manager.order.models.User;
-import studio.genesis.manager.order.responses.UserPayloadRepresentation;
-import studio.genesis.manager.order.responses.UserRepresentation;
+import studio.genesis.manager.order.models.StockMovement;
+import studio.genesis.manager.order.responses.StockMovementPayloadRepresentation;
+import studio.genesis.manager.order.responses.StockMovementRepresentation;
 
 import java.util.List;
 
-public interface UserRepresentationMapper {
+public interface StockMovementRepresentationMapper {
 
-    UserRepresentationMapper INSTANCE = Mappers.getMapper(UserRepresentationMapper.class);
+    StockMovementRepresentationMapper INSTANCE = Mappers.getMapper(StockMovementRepresentationMapper.class);
 
-    @BeanMapping(resultType = UserRepresentation.class)
-    UserRepresentation map(User item);
+    @BeanMapping(resultType = StockMovementRepresentation.class)
+    StockMovementRepresentation map(StockMovement item);
 
-    @BeanMapping(resultType = User.class)
-    User toModel(UserRepresentation item);
+    @BeanMapping(resultType = StockMovement.class)
+    StockMovement toModel(StockMovementRepresentation item);
 
-    @BeanMapping(resultType = User.class)
-    User payloadToModel(UserPayloadRepresentation item);
+    @BeanMapping(resultType = StockMovement.class)
+    StockMovement payloadToModel(StockMovementPayloadRepresentation item);
 
-    List<UserRepresentation> mapList(List<User> items);
+    List<StockMovementRepresentation> mapList(List<StockMovement> items);
 }
