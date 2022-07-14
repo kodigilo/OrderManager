@@ -3,7 +3,7 @@
 ## Start project
 
 ```
-docker-compose up -d
+docker-compose up --build -d
 ```
 
 ## Generate resources
@@ -13,7 +13,22 @@ mvn generate-resources
 
 ## Documentation
 
+### Via IDE port: 8080
 http://localhost:8080/swagger-ui.html#/
+
+### Via Docker port: 8000
+
+http://localhost:8000/swagger-ui.html#/
+
+
+### Config ENVs IDE Intellj
+
+```
+spring.datasource.url=jdbc:postgresql://localhost:5432/OrderManagerUser
+```
+
+![](configide.png)
+
 
 ### Reference Documentation
 

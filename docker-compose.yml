@@ -33,12 +33,12 @@ services:
     restart: unless-stopped
 
   springboot:
+    depends_on:
+      - postgres
     build:
       context: ./
       dockerfile: Dockerfile
     container_name: order-manager-spring-api
-    env_file:
-      - .env.example.dev
     ports:
       - 8000:8080
 
