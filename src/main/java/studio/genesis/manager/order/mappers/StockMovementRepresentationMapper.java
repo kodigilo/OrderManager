@@ -1,13 +1,14 @@
 package studio.genesis.manager.order.mappers;
 
 import org.mapstruct.BeanMapping;
+import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import studio.genesis.manager.order.models.StockMovement;
 import studio.genesis.manager.order.responses.StockMovementPayloadRepresentation;
 import studio.genesis.manager.order.responses.StockMovementRepresentation;
 
 import java.util.List;
-
+@Mapper
 public interface StockMovementRepresentationMapper {
 
     StockMovementRepresentationMapper INSTANCE = Mappers.getMapper(StockMovementRepresentationMapper.class);

@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Data
 @Entity
@@ -19,7 +20,7 @@ public class Order implements Serializable {
     private Integer quantity;
 
     @Column(name = "creation_date", nullable = false)
-    private LocalDateTime creationDate;
+    private OffsetDateTime creationDate;
 
     @JoinColumn(name = "id_item", nullable = false)
     @ManyToOne(fetch = FetchType.EAGER)

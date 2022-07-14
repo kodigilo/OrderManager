@@ -1,6 +1,7 @@
 # Getting Started
 
-## Start database
+## Start project
+
 ```
 docker-compose up -d
 ```

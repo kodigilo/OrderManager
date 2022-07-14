@@ -1,12 +1,13 @@
 package studio.genesis.manager.order.mappers;
 
 import org.mapstruct.BeanMapping;
+import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import org.springframework.data.domain.Page;
 import studio.genesis.manager.order.models.Order;
 import studio.genesis.manager.order.responses.PaginationOrderResponseRepresentation;
-
+@Mapper
 public interface PaginationOrderResponseRepresentationMapper {
     PaginationOrderResponseRepresentationMapper INSTANCE = Mappers.getMapper(PaginationOrderResponseRepresentationMapper.class);
 
