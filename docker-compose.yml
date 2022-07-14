@@ -39,6 +39,8 @@ services:
       context: ./
       dockerfile: Dockerfile
     container_name: order-manager-spring-api
+    links:
+      - "postgres:postgres_container"
     ports:
       - 8000:8080
 
