@@ -3,7 +3,7 @@
 ## Start project
 
 ```
-docker-compose up --build -d
+docker-compose up -d && docker-compose up --build -d
 ```
 
 ## Generate resources
