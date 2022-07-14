@@ -3,7 +3,9 @@
 ## Start project
 
 ```
-docker-compose up -d && docker-compose up --build -d
+docker-compose up -d postgres
+docker-compose up -d pgadmin
+docker-compose up --build -d springboot
 ```
 
 ## Generate resources
